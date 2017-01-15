@@ -17,9 +17,14 @@ mst:
     volumes:
         - ./etc/mst/local.json:/src/config/local.json
         - ./data/capture:/src/capture
+    restart: always
+        
 mongo:
     image: mvertes/alpine-mongo 
     volumes:
         - ./data/db:/data/db
+    restart: always
+
 redis: 
     image: redis:3-alpine
+    restart: always
