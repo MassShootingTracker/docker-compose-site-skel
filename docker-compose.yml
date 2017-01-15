@@ -11,9 +11,9 @@ mst:
         # - "8000:8000"
     environment: 
         # for development 
-        - NODE_DEV=development
+        - NODE_ENV=development
         # for production
-        # NODE_DEV=production
+        # NODE_ENV=production
     volumes:
         - ./etc/mst/local.json:/src/config/local.json
         - ./data/capture:/src/capture
