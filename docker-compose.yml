@@ -21,7 +21,7 @@ mst:
         - ./etc/mst/local.json:/src/config/local.json
         - ./data/capture:/src/capture
 mongo:
-    image: mongo
+    image: mvertes/alpine-mongo 
     volumes:
         - ./data/db:/data/db
 redis: 
