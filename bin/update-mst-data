@@ -1,23 +1,32 @@
 #!/usr/bin/python3
 
+from pathlib import Path
 import json
+import os
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
-with open('../etc/mst/local.json', 'r') as f:
-    config = json.load(f)
 
-port = config['app']['port']
-url = 'http://localhost:{}/update'.format(port)
-values = {'key': '', 'year': ''}
-values['key'] = config['app']['apiKey']
-years = sorted([y for y in config['googleDocs']])
+def main():
+    script_path = Path(os.path.realpath(__file__))
+    config_path = script_path.parent / "../etc/mst/local.json"
 
-for y in years:
-    values['year'] = y
-    data = urlencode(values)
-    data = data.encode('utf-8')
-    req = Request(url, data)
-    resp = urlopen(req)
-    print(resp.read())
+    with open(str(config_path), 'r') as f:
+        config = json.load(f)
 
+    port = config['app']['port']
+    url = 'http://localhost:{}/update'.format(port)
+    values = {'key': '', 'year': ''}
+    values['key'] = config['app']['apiKey']
+    years = sorted([y for y in config['googleDocs']])
+
+    for y in years:
+        values['year'] = y
+        data = urlencode(values)
+        data = data.encode('utf-8')
+        req = Request(url, data)
+        resp = urlopen(req)
+        print(resp.read())
+
+if __name__ == "__main__":
+    main()
