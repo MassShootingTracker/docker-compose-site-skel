@@ -1,0 +1,5 @@
+# Ignore evryting in this directory
+*
+
+# Except this
+!.gitignore

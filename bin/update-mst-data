@@ -1,0 +1,23 @@
+#!/usr/bin/python3
+
+import json
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
+
+URL = 'http://localhost:3030/update'
+
+with open('/mnt/mst_data/config/local.json', 'r') as f:
+    config = json.load(f)
+
+values = {'key': '', 'year': ''}
+values['key'] = config['app']['apiKey']
+years = sorted([y for y in config['googleDocs']])
+
+for y in years:
+    values['year'] = y
+    data = urlencode(values)
+    data = data.encode('utf-8')
+    req = Request(URL, data)
+    resp = urlopen(req)
+    print(resp.read())
+

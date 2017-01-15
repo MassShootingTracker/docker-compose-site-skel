@@ -1,0 +1,28 @@
+mst:
+    # image: mstracker
+    image: mstracker/mst:staging
+    links:
+        - "mongo:mongo"
+        - "redis:redis"
+    ports:
+        # development
+        - "3030:3030"
+        # production
+        # - "8000:8000"
+    environment: 
+        - MONGOLAB_URI=mongodb://mongo:27017/mst
+        - REDISCLOUD_HOSTNAME=redis
+        - REDISCLOUD_PORT=6379
+        # for development 
+        - NODE_DEV=development
+        # for production
+        # NODE_DEV=production
+    volumes:
+        - ./etc/mst/local.json:/src/config/local.json
+        - ./data/capture:/src/capture
+mongo:
+    image: mongo
+    volumes:
+        - ./data/db:/data/db
+redis: 
+    image: redis:3-alpine
