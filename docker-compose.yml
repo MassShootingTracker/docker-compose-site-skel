@@ -10,9 +10,6 @@ mst:
         # production
         # - "8000:8000"
     environment: 
-        - MONGOLAB_URI=mongodb://mongo:27017/mst
-        - REDISCLOUD_HOSTNAME=redis
-        - REDISCLOUD_PORT=6379
         # for development 
         - NODE_DEV=development
         # for production
