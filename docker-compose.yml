@@ -1,5 +1,5 @@
 mst:
-    # image: mstracker
+    # image: mstracker/mst
     image: mstracker/mst:staging
     links:
         - "mongo:mongo"

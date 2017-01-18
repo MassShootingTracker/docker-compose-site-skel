@@ -24,6 +24,7 @@ def main():
         values['year'] = y
         data = urlencode(values)
         data = data.encode('utf-8')
+        print('Sending update request to:', url)
         req = Request(url, data)
         resp = urlopen(req)
         print(resp.read())
